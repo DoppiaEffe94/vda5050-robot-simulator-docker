@@ -1,6 +1,8 @@
+import argparse
 import asyncio
 import datetime
 import json
+import os
 import time
 import random
 import paho.mqtt.client as mqtt
@@ -730,4 +732,12 @@ async def main():
     await asyncio.gather(*tasks)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run the VDA5050 robot simulator")
+    parser.add_argument(
+        "--config",
+        default=os.environ.get("VDA5050_CONFIG", "config.toml"),
+        help="Path to the TOML config (default: VDA5050_CONFIG or config.toml)",
+    )
+    args = parser.parse_args()
+    os.environ["VDA5050_CONFIG"] = args.config
     asyncio.run(main())

@@ -1,3 +1,4 @@
+import os
 import tomli
 from dataclasses import dataclass
 from typing import Optional
@@ -31,8 +32,9 @@ class Config:
     settings: Settings
 
 def get_config() -> Config:
-    """Load configuration from config.toml file"""
-    with open("config.toml", "rb") as f:
+    """Load the configured TOML file, defaulting to config.toml."""
+    config_path = os.environ.get("VDA5050_CONFIG", "config.toml")
+    with open(config_path, "rb") as f:
         config_dict = tomli.load(f)
     
     mqtt_broker = MqttBrokerConfig(**config_dict["mqtt_broker"])

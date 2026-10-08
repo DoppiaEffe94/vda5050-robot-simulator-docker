@@ -1,0 +1,11 @@
+services:
+  simulator:
+    image: vda5050-robot-simulator:latest
+    container_name: vda5050-robot-simulator
+    pull_policy: never
+    command: ["python", "main.py"]
+    network_mode: host
+    environment:
+      - VDA5050_CONFIG=/config/config.toml
+    volumes:
+      - ${HOST_CONFIG_PATH:?Export HOST_CONFIG_PATH first}:/config/config.toml:ro

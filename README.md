@@ -75,6 +75,9 @@ Python-based simulation environment for robots with VDA 5050 protocol (specifica
 
 ## Usage
 
+For a standalone Docker image that bundles the simulator and configuration,
+see [Docker build, run, and transfer instructions](docker/README.md).
+
 1.  **Start an MQTT Broker:** Ensure an MQTT broker such as [Mosquitto](https://mosquitto.org/) is running and accessible based on your `config.toml`.
 2.  **Run the Simulator:**
     ```bash
